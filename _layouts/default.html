@@ -6,11 +6,16 @@
 <meta name="author" content="{{ page.author | default: site.author | escape }}">
 <meta name="generator" content="Jekyll v{{ jekyll.version }}">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
+<link rel="icon" href="/assets/k3DW.png">
 {% if site.show_frame %}
 <link rel="stylesheet" href="{{ "/assets/css/frame.css" | relative_url }}">
 {% else %}
 <link rel="stylesheet" href="{{ "/assets/css/index.css" | relative_url }}">
 {% endif %}
+
+<link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
 {% if site.plugins contains "jekyll-feed" %}<link rel="alternate" href="{{ site.feed.path | default: "/feed.xml" | relative_url }}" type="application/atom+xml" title="{{ site.title }}">{% endif %}
 {% if page.mathjax or site.mathjax %}
 <link rel="stylesheet" href="{{ "/assets/katex/katex.min.css" | relative_url }}">
@@ -28,8 +33,11 @@
 {% endif %}
 
 <header>
-  <a href="{{ "/" | relative_url }}" class="title">{{ site.title | escape }}</a>
-  {% include menu.html menu=pages %}
+  <a href="{{ "/" | relative_url }}" class="title">
+    <img style="margin: 0" src="/assets/k3DW.png" width="24" height="24">
+    {{ site.title | escape }}
+  </a>
+  {% include menu.html menu=pages fontsize=100 %}
 </header>
 
 {{ content }}

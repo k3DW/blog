@@ -1,10 +1,10 @@
-title: "Blog Title"
-author: "Blog Author"
-description: "Made with <b style=\"color: #f45;\">&lt;3</b>"
+title: "Braden's Blog"
+author: "Braden Ganetsky"
+description: "Copyright © Braden Ganetsky 2023"
 permalink: /:title/
 lang: "en"
 excerpt_separator: "\n\n\n"
-date_format: "%B %d, %Y"
+date_format: "%Y-%m-%d"
 
 # Layout
 
@@ -16,13 +16,14 @@ minimal: false             # use a dark header
 # Menu
 
 navigation:                # accepts {file, title, url, icon, sidebaricon}
-  - {file: "index.html"}
-  - {file: "README.md"}
+  - {title: "Home", url: "https://ganets.ky/"}
+  - {title: "Archive", url: "/archive/"}
 
 external:                  # shows a footer with social links - for available icons see fontawesome.com/icons
-  - {title: Mail, icon: envelope, url: "mailto:niklasbuschmann@users.noreply.github.com"}
-  - {title: Github, icon: github, url: "https://github.com/niklasbuschmann/contrast"}
-  - {title: Subscribe, icon: rss, url: "/feed.xml"}
+  - {title: Mail, icon: envelope, url: "mailto:braden@ganets.ky"}
+  - {title: LinkedIn, icon: linkedin, url: "https://www.linkedin.com/in/braden-ganetsky/"}
+  - {title: YouTube, icon: youtube, url: "https://www.youtube.com/@k3DW/"}
+  - {title: Github, icon: github, url: "https://github.com/k3DW/"}
 
 comments:
 #  disqus_shortname: ""    # see https://disqus.com/
