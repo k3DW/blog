@@ -3,7 +3,7 @@ author: "Braden Ganetsky"
 description: "Copyright © Braden Ganetsky 2023"
 permalink: /:title/
 lang: "en"
-excerpt_separator: "\n\n\n"
+excerpt_separator: "<!--more-->"
 date_format: "%Y-%m-%d"
 
 # Layout
