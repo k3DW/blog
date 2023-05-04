@@ -31,3 +31,7 @@ comments:
 
 plugins:
  - jekyll-feed
+
+kramdown:
+  syntax_highlighter_opts:
+    disable : true
