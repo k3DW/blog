@@ -2,6 +2,7 @@
 title: "The Parser concept (+ NotChar and Literal)"
 layout: post
 permalink: /ParserConcept/
+tags: [ tok3n ]
 ---
 
 Continuing on my [series](/tok3n/) on my expression template parser generator library...

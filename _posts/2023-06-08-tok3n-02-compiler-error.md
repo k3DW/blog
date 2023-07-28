@@ -2,6 +2,7 @@
 title: "My first compiler bug"
 layout: post
 permalink: /FirstCompilerBug/
+tags: [ tok3n ]
 ---
 
 I talked about this in a lightning talk at C++Now 2023 (link TBA). I want to go into more detail here.

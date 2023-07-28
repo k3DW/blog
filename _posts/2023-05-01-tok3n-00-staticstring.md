@@ -2,6 +2,7 @@
 title: "A string literal as a template argument"
 layout: post
 permalink: /StaticString/
+tags: [ tok3n ]
 ---
 
 ## But first, a preamble
