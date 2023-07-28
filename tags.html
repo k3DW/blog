@@ -1,0 +1,16 @@
+---
+title: "Tags"
+layout: default
+sitemap: false
+---
+
+<article>
+  <header><h1>Tags</h1></header>
+  <ul class="archive">
+    {% for post_tag in site.tags %}
+    <li>
+      <b><a href="{{ post_tag.url | relative_url }}">{{ post_tag.title }}</a></b> - {{post_tag.description}}
+    </li>
+    {% endfor %}
+  </ul>
+</article>
