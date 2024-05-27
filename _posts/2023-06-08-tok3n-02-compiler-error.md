@@ -5,7 +5,7 @@ permalink: /FirstCompilerBug/
 tags: [ tok3n ]
 ---
 
-I talked about this in a lightning talk at C++Now 2023 (link TBA). I want to go into more detail here.
+I talked about this in [a lightning talk at C++Now 2023](https://youtu.be/qnWYUsXvbVg). I want to go into more detail here.
 
 It's exciting in a masochistic way I guess. A sort of self-schadenfreude. Somehow I found a bug in a major compiler! Frustrating for my workflow obviously, but it feels like a compliment, in a strange way.
 
@@ -21,7 +21,7 @@ I switched to using my library and everything worked just fine. Until it didn't.
 static const auto input = read_input_file();
 static const auto data = []
 {
-    constexpr OneChar<"0123456789"> digit;
+    constexpr AnyOf<"0123456789"> digit;
     constexpr auto parser = /* something with digit */;
     auto result = parser.parse(input);
     if (not result)
@@ -44,7 +44,7 @@ I got ahead of myself though. I didn't yet know what was actually going wrong. I
 
 ```cpp
 [] {
-    constexpr OneChar<"0123456789"> digit;
+    constexpr AnyOf<"0123456789"> digit;
     static_assert(digit.parse("0"));
     static_assert(digit.parse("1"));
     // etc...
@@ -57,7 +57,7 @@ On a whim, I changed my testing style. How about we try run-time tests with the 
 
 ```cpp
 [] {
-    constexpr OneChar<"0123456789"> digit;
+    constexpr AnyOf<"0123456789"> digit;
     static_assert(digit.parse("0"));
     assert(digit.parse("0"));
     static_assert(digit.parse("1"));
@@ -66,21 +66,21 @@ On a whim, I changed my testing style. How about we try run-time tests with the 
 }()
 ```
 
-I came to a horrifying conclusion. The compile-time tests were passing, but the run-time tests were failing. But `OneChar` is stateless right? Right??
+I came to a horrifying conclusion. The compile-time tests were passing, but the run-time tests were failing. But `AnyOf` is stateless right? Right??
 
 Wrong, there's one piece of state.
 
 <br>
 
-## `OneChar`'s unexpected statefulness
+## `AnyOf`'s unexpected statefulness
 
-`OneChar` does have state, but it's not modifiable. Its template parameter determines its behaviour. Is something happening to the template parameter, to make the function behave differently? Is that possible?
+`AnyOf` does have state, but it's not modifiable. Its template parameter determines its behaviour. Is something happening to the template parameter to make the function behave differently? Is that even possible?
 
-It took a few tries to expose the string parameter at run-time. I settled on a new variable in `OneChar` that aliases its `StaticString` template parameter, and I'm calling it `the_string`.
+It took a few tries to expose the string parameter at run-time. I settled on a new variable in `AnyOf` that aliases its `StaticString` template parameter, and I'm calling it `the_string`.
 
 ```cpp
 [] {
-    constexpr OneChar<"01"> digit;
+    constexpr AnyOf<"01"> digit;
     static_assert(digit.parse("0"));
     for (char c : digit.the_string.data)
         std::cout << "Char - " << c << "\n";
@@ -103,12 +103,12 @@ What? It works as expected? But if I add `assert(digit.parse("0"));` then it sti
 
 ## Minimally reproducible
 
-If I'm going to file a bug report, I need to narrow this down. Let's simplify `OneChar` with a made-up function `match()` for testing.
+If I'm going to file a bug report, I need to narrow this down. Let's simplify `AnyOf` with a made-up function `match()` for testing.
 
 ```cpp
 template <StaticString str>
 requires (is_sorted_and_uniqued(str))
-struct OneChar
+struct AnyOf
 {
 	static constexpr bool match(char c)
 	{
@@ -117,7 +117,7 @@ struct OneChar
 };
 
 [] {
-	constexpr OneChar<"01"> digit;
+	constexpr AnyOf<"01"> digit;
 	static_assert(digit.match('0'));
 	static_assert(digit.match('1'));
 	static_assert(not digit.match('\0'));
@@ -128,7 +128,7 @@ struct OneChar
 }();
 ```
 
-Ahh yes here it is. We got to the root of the problem. The template parameter is getting zeroed out at run-time, but left intact at compile-time. Let's reproduce it with even less code. Can we remove the constraint on the `OneChar` class template? No, that stops the problem from happening. But can we simplify the constraint? As it turns out, yes. In fact, as far as I can tell, it can be any constraint. So let's make it completely trivial.
+Ahh yes here it is. We got to the root of the problem. The template parameter is getting zeroed out at run-time, but left intact at compile-time. Let's reproduce it with even less code. Can we remove the constraint on the `AnyOf` class template? No, that stops the problem from happening. But can we simplify the constraint? As it turns out, yes. In fact, as far as I can tell, it can be any constraint. So let's make it completely trivial.
 
 ```cpp
 template <auto value>
@@ -136,13 +136,13 @@ concept True = true;
 
 template <StaticString str>
 requires True<str>
-struct OneChar
+struct AnyOf
 {
     // ...
 };
 ```
 
-That helps. How about the NTTP? Can `StaticString` be replaced with a primitive type? No, it seems like it needs to be a class NTTP. But how simple can it get? This is what I came up with. It's just a simple wrapper around 1 `int`.
+That helps. How about the NTTP? Can `StaticString` be replaced with a primitive type? No, it seems like it needs to be a structural NTTP. But how simple can it get? This is what I came up with. It's just a simple wrapper around 1 `int`.
 
 ```cpp
 struct Wrapper
@@ -180,4 +180,4 @@ int main()
 
 And that's it! As of Visual Studio 17.6.2, the most recent update as of the time of writing, this is still a bug. I hope it gets fixed at some point. That said, this problem coincidentally goes away once I introduce other preferred syntax into the library, but we'll get there.
 
-Next up, I want to expand into more than just `OneChar`. It'll be a short one about a couple other types of parsers.
+Next up, I want to expand into more than just `AnyOf`. It'll be a short one about a couple other types of parsers. [Here](https://github.com/k3DW/blog/tree/main/assets/posts/tok3n/02-FirstCompilerBug) is the code written in this article.
