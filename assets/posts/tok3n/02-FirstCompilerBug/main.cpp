@@ -29,9 +29,15 @@ int main()
         static_assert(digit.match('1'));
         static_assert(not digit.match('\0'));
 
+#ifdef _MSC_VER
         assert(not digit.match('0'));
         assert(not digit.match('1'));
         assert(digit.match('\0'));
+#else
+        assert(digit.match('0'));
+        assert(digit.match('1'));
+        assert(not digit.match('\0'));
+#endif
     }();
 
     [] {

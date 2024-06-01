@@ -1,4 +1,5 @@
-cmake_minimum_required (VERSION 3.26)
+cmake_minimum_required (VERSION 3.22)
+project(02_FirstCompilerBug)
 
 set(_TARGET k3_blog_post_FirstCompilerBug)
 
