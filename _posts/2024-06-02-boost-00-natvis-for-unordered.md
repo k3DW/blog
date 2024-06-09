@@ -1,5 +1,5 @@
 ---
-title: "Natvis for boost::unordered_map"
+title: "Natvis for boost::unordered_map, and how to use &lt;Intrinsic&gt; elements"
 layout: post
 permalink: /NatvisForUnordered/
 tags: [ boost ]
