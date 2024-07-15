@@ -2,7 +2,7 @@
 title: "Natvis for boost::concurrent_flat_map, and why fancy pointers are hard"
 layout: post
 permalink: /NatvisForUnordered2/
-tags: [ _hidden ]
+tags: [ boost ]
 ---
 
 This is the 2nd article about my experience implementing custom visualizations for the [Boost.Unordered containers](https://github.com/boostorg/unordered/) in the [Visual Studio Natvis framework](https://learn.microsoft.com/en-us/visualstudio/debugger/create-custom-views-of-native-objects). You can read the 1st article [here](/NatvisForUnordered/).
