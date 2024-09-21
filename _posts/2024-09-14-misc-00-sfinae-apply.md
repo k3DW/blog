@@ -2,7 +2,7 @@
 title: "A single-function SFINAE-friendly std::apply"
 layout: post
 permalink: /SfinaeApply/
-tags: [ _hidden, misc ]
+tags: [ misc ]
 ---
 
 There's this issue I've had when using `std::apply`, and I'm sure if you've written enough generic code, then you've experienced it too. If not, don't worry, I'll go through it fully. As specified in the standard, you can't check whether a call to `std::apply` is semantically valid at compile-time. This would often be useful with a [SFINAE idiom](https://en.cppreference.com/w/cpp/language/sfinae), whether using classic SFINAE or using C++20 constraints.
