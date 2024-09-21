@@ -364,7 +364,7 @@ For `apply()`, this will have
 
 Repeating all this as many times as we actually need to, it's a mouthful. But it works! Now we can query whether or not `apply()` can be called with given parameters. This is extremely useful.
 
-That was a short section, and it satisfies the requirements. But ket's see if we can write this without the helper function `__apply_impl()`. I want to avoid introducing another identifier into the namespace.
+That was a short section, and it satisfies the requirements. But let's see if we can write this without the helper function `__apply_impl()`. I want to avoid introducing another identifier into the namespace. _*Note that everything in the rest of this article is for exploration and amusement. I'm not recommending this for your code. I'm merely having fun seeing how far I can take the language.*_
 
 <br>
 
