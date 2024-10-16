@@ -5,6 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="{{ page.author | default: site.author | escape }}">
 <meta name="generator" content="Jekyll v{{ jekyll.version }}">
+
+{% if page.layout == "post" %}
+<meta property="og:title" content="{{ page.title | escape }}" />
+  {% if page.description %}
+  <meta property="og:description" content="{{ page.date | date: "%Y-%m-%d" }} - {{ page.description | escape }}" />
+  {% else %}
+  <meta property="og:description" content="{{ page.date | date: "%Y-%m-%d" }}" />
+  {% endif %}
+{% elsif page.layout == "tag" %}
+<meta property="og:title" content="{{ page.title | escape }} tag | Braden++" />
+{% else %}
+<meta property="og:title" content="Braden++" />
+{% endif %}
+<meta property="og:url" content="{{ page.url | absolute_url }}" />
+<meta property="og:image" content="/assets/k3DW-og-cropped.png" />
+<meta property="og:type" content="article" />
+
 <link rel="canonical" href="{{ page.url | absolute_url }}">
 <link rel="icon" href="/assets/k3DW.png">
 {% if site.show_frame %}
