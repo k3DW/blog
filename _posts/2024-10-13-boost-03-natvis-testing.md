@@ -2,7 +2,7 @@
 title: "I want to write automated Natvis testing"
 layout: post
 permalink: /NatvisTesting/
-tags: [ boost, _hidden ]
+tags: [ boost ]
 ---
 
 Since writing the Natvis visualizers for Boost.Unordered, I've been thinking about how to test them. So far, I've only written semi-automatic testing. Run the "visualizer_tests.cpp" file in Visual Studio, break on the label called "break_here", then inspect the Locals window. Since I already set up the code and checked it in, there's no need to modify.
