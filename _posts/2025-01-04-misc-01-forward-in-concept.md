@@ -2,7 +2,7 @@
 title: "How and why to std::forward inside a concept"
 layout: post
 permalink: /ForwardInConcept/
-tags: [ misc, _hidden ]
+tags: [ misc ]
 ---
 
 I thought I had a solid understanding of how `std::forward` works, but it turns out I was wrong. In a concept definition where I originally used `std::forward`, it turned out to give the incorrect behaviour. It seems like `std::forward` should only be used in cases of type deduction, but I was using it in a situation where the type was explicitly passed.
