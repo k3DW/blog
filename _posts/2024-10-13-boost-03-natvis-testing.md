@@ -2,7 +2,7 @@
 title: "I want to write automated Natvis testing"
 layout: post
 permalink: /NatvisTesting/
-tags: [ boost ]
+tags: [ boost, natvis ]
 ---
 
 Since writing the Natvis visualizers for Boost.Unordered, I've been thinking about how to test them. So far, I've only written semi-automatic testing. Run the "visualizer_tests.cpp" file in Visual Studio, break on the label called "break_here", then inspect the Locals window. Since I already set up the code and checked it in, there's no need to modify.
@@ -70,7 +70,7 @@ After loading and installation, you should have that "Debuggers" folder from the
 
 Here's a nice find. CDB has a capability similar to GDB's "gdbinit" file. If we place a file called "ntsd.ini" in the same directory that we're running CDB from, then this file is used as a list of commands to run.
 
-For the "meta-commands", I'm using the following. Note, the meta-commands are regarding the debugger's own properties and state, and they begin with a dot. All regular commands are regarding the program being debugged. 
+For the "meta-commands", I'm using the following. Note, the meta-commands are regarding the debugger's own properties and state, and they begin with a dot. All regular commands are regarding the program being debugged.
 
 * `.sympath [exe_directory]` to load the symbols in the `pdb` file. This may load automatically since the `exe` is in the same directory, but it may not, and I'd rather have the redundancy.
 * `.nvload path\to\boost\libs\unordered\extra\boost_unordered.natvis` to load the Natvis file.

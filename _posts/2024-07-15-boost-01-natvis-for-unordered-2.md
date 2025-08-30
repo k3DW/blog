@@ -2,7 +2,7 @@
 title: "Natvis for boost::concurrent_flat_map, and why fancy pointers are hard"
 layout: post
 permalink: /NatvisForUnordered2/
-tags: [ boost ]
+tags: [ boost, natvis ]
 ---
 
 This is the 2nd article about my experience implementing custom visualizations for the [Boost.Unordered containers](https://github.com/boostorg/unordered/) in the [Visual Studio Natvis framework](https://learn.microsoft.com/en-us/visualstudio/debugger/create-custom-views-of-native-objects). You can read the 1st article [here](/NatvisForUnordered/).
@@ -269,7 +269,7 @@ But that might be fine. Maybe we can specify that we only support fancy pointer 
 
 This answers the question. It looks like we *can* create a class type object in natvis.
 
-Here's the real problem. 
+Here's the real problem.
 
 <br>
 
@@ -372,7 +372,7 @@ I originally ended the main body of this article with a defeat, but now I can cl
 
 With Boost 1.86, Boost.Unordered's open-addressing containers will come with visualizations in the Visual Studio Natvis framework, along with other things. Initially in 1.86, we only support containers with allocators that use raw pointers. Natvis support for containers using fancy pointers will come in Boost 1.87.
 
-To prove that the fancy pointer implementation works, I wrote the proper customization points for `boost::interprocess::offset_ptr`. All you need is an intrinsic called `boost_to_address()` and another one called `boost_next()`, then any container using your fancy pointer type can be visualized too! I wrote detailed instructions for fancy pointer support at the bottom of [the boost_unordered.natvis file](https://github.com/boostorg/unordered/blob/develop/extra/boost_unordered.natvis), in case you're interested in implementing this customization point for your type. 
+To prove that the fancy pointer implementation works, I wrote the proper customization points for `boost::interprocess::offset_ptr`. All you need is an intrinsic called `boost_to_address()` and another one called `boost_next()`, then any container using your fancy pointer type can be visualized too! I wrote detailed instructions for fancy pointer support at the bottom of [the boost_unordered.natvis file](https://github.com/boostorg/unordered/blob/develop/extra/boost_unordered.natvis), in case you're interested in implementing this customization point for your type.
 
 With this article, I hope you have learned some more intricacies of how to write a natvis file. It has been a great experience to explore what is and what is not possible. We can write some fairly complicated algorithms and overload sets. It seems like natvis can even be used for arbitrary data with customization points for users to inject behaviour. This is not without limitation, but there is quite a lot that we can do.
 

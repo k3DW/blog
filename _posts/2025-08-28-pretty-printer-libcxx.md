@@ -2,7 +2,7 @@
 title: "How to use the libc++ GDB pretty-printers"
 layout: post
 permalink: /LibcxxPrettyPrinters/
-tags: []
+tags: [ pretty-print ]
 ---
 
 Last year I wrote [an article](/NatvisTesting/) about my attempt so far at a system for testing Natvis files automatically. Here, I wanted to write the equivalent article but for GDB pretty-printers, for which I have [an earlier article](/PrettyPrinter/). As I said in the Natvis testing article:

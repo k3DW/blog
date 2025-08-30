@@ -2,7 +2,7 @@
 title: "Visualizing boost::unordered_map in GDB, with pretty-printer customization points"
 layout: post
 permalink: /PrettyPrinter/
-tags: [ boost ]
+tags: [ boost, pretty-print ]
 ---
 
 This article is about my experience implementing [GDB pretty-printers](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Pretty-Printing.html) for the [Boost.Unordered containers](https://github.com/boostorg/unordered/). You can read my related pair of articles on the Visual Studio natvis implementation [here](/NatvisForUnordered/) and [here](/NatvisForUnordered2/).
@@ -27,7 +27,7 @@ If you want to use the Boost.Unordered pretty-printers, it's very simple. First,
 (gdb) set print pretty on
 ```
 
-I used [Niall Douglas's technique](https://lists.boost.org/Archives/boost/2024/07/257002.php) to embed the Python script into the executable, something I haven't seen before he demonstrated it. He was a great help in getting this technique to work for Unordered as well! In Boost 1.87 or later, if you use Boost.Unordered without defining any other macros, you already have the pretty-printers embedded in your binary. All you need to do is `add-auto-load-safe-path` to your executable, like this. 
+I used [Niall Douglas's technique](https://lists.boost.org/Archives/boost/2024/07/257002.php) to embed the Python script into the executable, something I haven't seen before he demonstrated it. He was a great help in getting this technique to work for Unordered as well! In Boost 1.87 or later, if you use Boost.Unordered without defining any other macros, you already have the pretty-printers embedded in your binary. All you need to do is `add-auto-load-safe-path` to your executable, like this.
 
 ```
 (gdb) add-auto-load-safe-path path/to/executable
@@ -53,7 +53,7 @@ I created 1 pretty-printer class in Python for all of the closed-addressing cont
 class BoostUnorderedFcaPrinter:
     def __init__(self, val):
         self.val = val
-    
+
     def to_string(self):
         return f"This is a {self.val.type}"
 ```
@@ -317,7 +317,7 @@ def children(self):
         size = grouped_buckets["size_"]
         buckets = grouped_buckets["buckets"]
         bucket_index = 0
-        
+
         count = 0
         while bucket_index != size:
             current_bucket = self.cpo.next(self.cpo.to_address(buckets), bucket_index)

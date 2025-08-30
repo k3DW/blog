@@ -2,7 +2,7 @@
 title: "Natvis for boost::unordered_map, and how to use &lt;Intrinsic&gt; elements"
 layout: post
 permalink: /NatvisForUnordered/
-tags: [ boost ]
+tags: [ boost, natvis ]
 ---
 
 Recently I've been working on implementing custom visualizations for the [Boost.Unordered containers](https://github.com/boostorg/unordered/) in the [Visual Studio Natvis framework](https://learn.microsoft.com/en-us/visualstudio/debugger/create-custom-views-of-native-objects), to provide an identical debugging experience in the Boost.Unordered containers to what we get for the STL containers. [Here is the file](https://github.com/boostorg/unordered/blob/develop/extra/boost_unordered.natvis).
@@ -101,7 +101,7 @@ Then the hash and equality function objects can be computed with parametrized `<
 
 Importantly, I can only call `funcs_[idx]` here because `funcs_` is a C array, and this is a built-in operation. If the expression `funcs_[idx]` would call into a user-specified `operator[]()`, this would not be allowed.
 
-Finally I use these intrinsics in the `<Expand>` section, where all the visualization entries are specified. 
+Finally I use these intrinsics in the `<Expand>` section, where all the visualization entries are specified.
 
 ```xml
 <Expand>
