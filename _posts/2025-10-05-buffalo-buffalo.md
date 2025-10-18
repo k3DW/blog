@@ -120,7 +120,7 @@ Going further, this can actually be used in various places all over the language
 ```cpp
 buffalo b1{};
 struct buffalo::buffalo::buffalo b2{};
-auto b3 = typename buffalo::buffalo::buffalo::buffalo::buffalo::buffalo::buffalo::buffalo{};
+struct buffalo::buffalo::buffalo::buffalo::buffalo::buffalo::buffalo::buffalo b3{};
 ```
 
 "Hey wouldn't it be cool if this worked?" And then it turns out it does.
