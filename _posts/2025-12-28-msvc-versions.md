@@ -1,11 +1,11 @@
 ---
-title: "How to use a specific version of MSVC in GitHub Actions"
+title: "I wrote a GitHub Action to select an MSVC version"
 layout: post
 permalink: /MsvcGha/
-tags: [ misc, _hidden ]
+tags: [ misc ]
 ---
 
-Alright, I'm not breaking new ground here, but this is a difficulty I've had, and maybe it's a difficulty you've had too. It's not common, but if you want to test your code with a particular version of MSVC, it's fairly tricky and finicky. Before sitting down this week to figure it out, I've never had success with running multiple versions of MSVC with GitHub Actions.
+Alright, I'm not breaking new ground here, but this is a difficulty I've had, and maybe it's a difficulty you've had too. It's not common, but if you want to compile your code with a particular version of MSVC, it's already fairly finicky on your own machine. It's even worse with GitHub Actions, where you have no UI. Before sitting down this week to figure it out, I've never had success with running multiple versions of MSVC with GitHub Actions.
 
 GitHub Actions used to have multiple versions of Visual Studio build tools installed on their Windows runners, but [this was removed in May 2024](https://github.com/actions/runner-images/issues/9701). Instead, only the latest build tools are present, so we must find a way to install whichever specific version of MSVC ourselves.
 
