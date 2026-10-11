@@ -61,12 +61,12 @@ I like writing compile-time code. For a few years I've been working on a compile
 Because I have this parser generator library that I like very much, most of my effort has actually been focused on testing it. If you write compile-time code, you should also test that code at compile-time, so all of my tests check the compile-time behaviour of my library. This is something I care about deeply, and I've given 3 talks on it so far:
 
 * C++Now 2024 - [Unit Testing an Expression Template Library in C++20](https://youtu.be/H4KzM-wDiQw)
-* C++Now 2026 - Testing Everything in Constexpr (link TBD)
+* C++Now 2026 - [Testing Everything in Constexpr](https://www.youtube.com/watch?v=SgIiQS6RO60)
 * ACCU on Sea 2026 - Techniques of Compile-time Unit Testing in C++ (link TBD).
 
 Between 2024 and 2026, I entirely changed my testing strategy, based on the amazing idea I encountered when writing my 2024 talk, from the [Snitch library](https://github.com/snitch-org/snitch): ***You can store a compile-time condition, and then check the result at run-time.*** Instead of using `static_assert` throughout my tests, I want my tests to all compile successfully, even if there are compile-time conditions that fail. Then at run-time, I can have a nice user-defined error message and a nice test printout from the framework. This is nicer than a compiler-generated error message, especially because the printout is compiler-independent, and will look the same regardless.
 
-I spun my testing framework off into its own repo separate from `tok3n`, and named it [`k3tchup`](https://github.com/k3DW/k3tchup). Then I started to add more features to it, in an effort to make it a generally usable testing library. This whole story for the past 2 years, with the technical details on many of the features I added, is the topic of my last 2 talks, at C++Now 2026 (link TBD) and ACCU on Sea 2026 (link TBD).
+I spun my testing framework off into its own repo separate from `tok3n`, and named it [`k3tchup`](https://github.com/k3DW/k3tchup). Then I started to add more features to it, in an effort to make it a generally usable testing library. This whole story for the past 2 years, with the technical details on many of the features I added, is the topic of my last 2 talks, at [C++Now 2026](https://www.youtube.com/watch?v=SgIiQS6RO60) and ACCU on Sea 2026 (link TBD).
 
 <br>
 
