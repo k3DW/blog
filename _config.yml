@@ -1,6 +1,8 @@
 title: "Braden++"
 author: "Braden Ganetsky"
-description: "Copyright © Braden Ganetsky 2023-2026"
+description: "Braden Ganetsky's blog"
+copyright: "Copyright © Braden Ganetsky 2023-2026"
+url: "https://blog.ganets.ky"
 permalink: /:title/
 lang: "en"
 excerpt_separator: "<!--more-->"
@@ -25,13 +27,14 @@ external:                  # shows a footer with social links - for available ic
   - {title: LinkedIn, icon: linkedin, url: "https://www.linkedin.com/in/braden-ganetsky/"}
   - {title: YouTube, icon: youtube, url: "https://www.youtube.com/@braden.ganetsky"}
   - {title: Github, icon: github, url: "https://github.com/k3DW/"}
+  - {title: RSS, icon: rss, url: "https://blog.ganets.ky/feed.xml"}
 
 comments:
 #  disqus_shortname: ""    # see https://disqus.com/
 #  isso_domain: ""         # see https://posativ.org/isso/
 
-plugins:
- - jekyll-feed
+# plugins:
+#  - jekyll-feed
 
 kramdown:
   syntax_highlighter_opts:

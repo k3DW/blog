@@ -19,7 +19,7 @@
 <meta property="og:title" content="Braden++" />
 {% endif %}
 <meta property="og:url" content="{{ page.url | absolute_url }}" />
-<meta property="og:image" content="/assets/k3DW-og-cropped.png" />
+<meta property="og:image" content={{ "/assets/k3DW-og-cropped.png" | absolute_url }} />
 <meta property="og:type" content="article" />
 
 <link rel="canonical" href="{{ page.url | absolute_url }}">
@@ -35,7 +35,11 @@
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
 
-{% if site.plugins contains "jekyll-feed" %}<link rel="alternate" href="{{ site.feed.path | default: "/feed.xml" | relative_url }}" type="application/atom+xml" title="{{ site.title }}">{% endif %}
+{% if site.plugins contains "jekyll-feed" %}
+  <link rel="alternate" href="{{ site.feed.path | default: "/feed.xml" | relative_url }}" type="application/atom+xml" title="{{ site.title }}">
+{% else %}
+  <link rel="alternate" href="{{ site.feed.path | default: "/feed.xml" | relative_url }}" type="application/rss+xml" title="{{ site.title | escape }}">
+{% endif %}
 {% if page.mathjax or site.mathjax %}
 <link rel="stylesheet" href="{{ "/assets/katex/katex.min.css" | relative_url }}">
 <script defer src="{{ "/assets/katex/katex.min.js" | relative_url }}"></script>
@@ -63,7 +67,7 @@
 
 {% if site.external %}
 <footer>
-  <div>{{ site.description | default: site.title }}</div>
+  <div>{{ site.copyright }}</div>
   {% include menu.html menu=site.external %}
 </footer>
 {% endif %}
