@@ -5,6 +5,16 @@ layout: default
 <article>
   {% include meta.html post=page %}
   {{ content }}
+  <script>
+    document.querySelectorAll("article h2[id]").forEach((heading) => {
+      const link = document.createElement("a");
+      link.className = "heading-anchor";
+      link.href = `#${heading.id}`;
+      link.setAttribute("aria-label", `Link to section: ${heading.textContent.trim()}`);
+      link.textContent = "#";
+      heading.append(" ", link);
+    });
+  </script>
   {% if page.comments != false and site.comments.isso or site.comments.disqus %}
     <hr>
     {% if site.comments.isso_domain %}<div id="isso-thread"></div>{% endif %}
