@@ -58,7 +58,7 @@ void bar() {
 }
 ```
 
-In Clang, I reduced it down to this minimal repro, which still showed the same issue.
+In Clang, I reduced it down to this minimal repro, which still showed the same issue. I opened [llvm/llvm-project#205218](https://github.com/llvm/llvm-project/issues/205218), and it turns out to be a duplicate of [llvm/llvm-project#35052](https://github.com/llvm/llvm-project/issues/35052).
 
 ```cpp
 template <class T = void>
